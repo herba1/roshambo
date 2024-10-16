@@ -8,13 +8,13 @@ function getComputerChoice(){
     let x = Math.floor(Math.random()*100);
     // tried to split the odds evenly but its not 33.33 odds sad =(
     if(x >= 67){
-        return "Rock";
+        return "rock";
     }
     else if(x >= 34){
-        return "Paper";
+        return "paper";
     }
     else{
-        return "Scissors";
+        return "scissors";
     }
 }
 
@@ -37,3 +37,37 @@ function getHumanInput(){
     }
 
 }
+
+function playRound(humanInput, computerInput){
+    // tie case
+    if(humanInput === computerInput){
+        console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
+        console.log("Results:");
+        console.log("TIE lets try that again");
+        return;
+    }
+    // all lose cases
+    else if ((humanInput === "rock") && (computerInput ==="paper") || 
+            (humanInput === "paper") && (computerInput ==="scissors") ||
+            (humanInput === "scissors") && (computerInput ==="rock") 
+            ){
+        computerScore++;
+        console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
+        console.log("Results:")
+        console.log("LOSE")
+        console.log(`Score, You: ${humanScore}, Computer: ${computerScore}.`);
+        return;
+    }
+    // all cases left is win
+    else {
+        humanScore++;
+        console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
+        console.log("Results:")
+        console.log("Win!")
+        console.log(`Score, You: ${humanScore}, Computer: ${computerScore}.`);
+        return;
+    }
+
+}
+
+playRound(getHumanInput(),getComputerChoice());
