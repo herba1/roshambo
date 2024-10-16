@@ -1,7 +1,6 @@
-console.log("hello world!");
-
 let humanScore = 0;
 let computerScore= 0;
+let round = 0;
 
 function getComputerChoice(){
     // returns a value 0 - 100
@@ -41,6 +40,7 @@ function getHumanInput(){
 function playRound(humanInput, computerInput){
     // tie case
     if(humanInput === computerInput){
+        round++;
         console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
         console.log("Results:");
         console.log("TIE lets try that again");
@@ -51,6 +51,7 @@ function playRound(humanInput, computerInput){
             (humanInput === "paper") && (computerInput ==="scissors") ||
             (humanInput === "scissors") && (computerInput ==="rock") 
             ){
+        round++;
         computerScore++;
         console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
         console.log("Results:")
@@ -60,6 +61,7 @@ function playRound(humanInput, computerInput){
     }
     // all cases left is win
     else {
+        round++;
         humanScore++;
         console.log(`you say: ${humanInput}, computer says: ${computerInput}.`);
         console.log("Results:")
@@ -70,4 +72,19 @@ function playRound(humanInput, computerInput){
 
 }
 
-playRound(getHumanInput(),getComputerChoice());
+function playGame(){
+    console.log("Welcome to roshambo console edition =p");
+    console.log("rules are simple first to 5 wins");
+    console.log("shall we begin?");
+
+    while((humanScore < 5) && (computerScore < 5)){
+        console.log(`Round: ${round}`);
+        playRound(getHumanInput(),getComputerChoice());
+    }
+    if(humanScore === 5)console.log("oh yeah ez");
+    if(computerScore === 5)console.log("you lost by chance its alright");
+    console.log("thanks for playing!");
+
+}
+
+playGame();
